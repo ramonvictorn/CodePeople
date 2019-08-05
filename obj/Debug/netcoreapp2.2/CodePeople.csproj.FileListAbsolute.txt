@@ -1,0 +1,14 @@
+/home/ramon/Documentos/projects/dotnet/CodePeople/bin/Debug/netcoreapp2.2/CodePeople.deps.json
+/home/ramon/Documentos/projects/dotnet/CodePeople/bin/Debug/netcoreapp2.2/CodePeople.runtimeconfig.json
+/home/ramon/Documentos/projects/dotnet/CodePeople/bin/Debug/netcoreapp2.2/CodePeople.runtimeconfig.dev.json
+/home/ramon/Documentos/projects/dotnet/CodePeople/bin/Debug/netcoreapp2.2/CodePeople.dll
+/home/ramon/Documentos/projects/dotnet/CodePeople/bin/Debug/netcoreapp2.2/CodePeople.pdb
+/home/ramon/Documentos/projects/dotnet/CodePeople/obj/Debug/netcoreapp2.2/CodePeople.csprojAssemblyReference.cache
+/home/ramon/Documentos/projects/dotnet/CodePeople/obj/Debug/netcoreapp2.2/CodePeople.csproj.CoreCompileInputs.cache
+/home/ramon/Documentos/projects/dotnet/CodePeople/obj/Debug/netcoreapp2.2/CodePeople.RazorAssemblyInfo.cache
+/home/ramon/Documentos/projects/dotnet/CodePeople/obj/Debug/netcoreapp2.2/CodePeople.RazorAssemblyInfo.cs
+/home/ramon/Documentos/projects/dotnet/CodePeople/obj/Debug/netcoreapp2.2/CodePeople.AssemblyInfoInputs.cache
+/home/ramon/Documentos/projects/dotnet/CodePeople/obj/Debug/netcoreapp2.2/CodePeople.AssemblyInfo.cs
+/home/ramon/Documentos/projects/dotnet/CodePeople/obj/Debug/netcoreapp2.2/CodePeople.RazorTargetAssemblyInfo.cache
+/home/ramon/Documentos/projects/dotnet/CodePeople/obj/Debug/netcoreapp2.2/CodePeople.dll
+/home/ramon/Documentos/projects/dotnet/CodePeople/obj/Debug/netcoreapp2.2/CodePeople.pdb
