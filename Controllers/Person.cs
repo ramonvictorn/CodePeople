@@ -14,77 +14,59 @@ namespace CodePeople.Model{
         }
         [HttpGet]
         public List<Person> get(
-            [FromQuery]string filterName,
-            [FromQuery]string filterEmail,
-            [FromQuery]string filterCpf, 
-            [FromQuery]string filterTelefone,
             [FromQuery]string offset,
-            [FromQuery]string orderBy
-            )
+            [FromQuery]string orderBy,
+            Person personToSearch
+        )
         {   
-
-            // int _filterCpf = filterCpf == null ? 0 : int.Parse(filterCpf);
-            // int _filterTelefone = filterTelefone == null ? 0 : int.Parse(filterTelefone);
             int _offset = offset == null ? 0 : int.Parse(offset);
             string _orderBy = orderBy == null ? "id" : orderBy;
-            //List<Person> personWithOrder;
-            List<Person> personWithFilters = _context.People
-                .Where(p => 
-                    (filterName  == null || p.Nome == filterName) &&
-                    (filterEmail  == null || p.Email == filterEmail) &&
-                    (filterCpf  == null || p.Cpf == filterCpf) &&
-                    (filterTelefone  == null || p.Telefone == filterTelefone)
-                    
-                ).Skip(_offset).ToList();
-                
-                var teste = from p in _context.People select p;
+            var peopleWithFilters = from p in _context.People select p;
 
-                teste = teste.Where(p => 
-                    (filterName  == null || p.Nome == filterName) &&
-                    (filterEmail  == null || p.Email == filterEmail) &&
-                    (filterCpf  == null || p.Cpf == filterCpf) &&
-                    (filterTelefone  == null || p.Telefone == filterTelefone)
+                peopleWithFilters = peopleWithFilters.Where(p => 
+                    (personToSearch.Nome  == null || p.Nome == personToSearch.Nome) &&
+                    (personToSearch.Email  == null || p.Email == personToSearch.Email) &&
+                    (personToSearch.Cpf  == null || p.Cpf == personToSearch.Cpf) &&
+                    (personToSearch.Telefone  == null || p.Telefone == personToSearch.Telefone)
                     
                 ).Skip(_offset);
 
                 switch (_orderBy)
                 {
                     case "cpf":
-                        teste = teste.OrderBy(p => p.Cpf);
+                        peopleWithFilters = peopleWithFilters.OrderBy(p => p.Cpf);
                         break;
                     case "nome":
-                        teste = teste.OrderBy(p => p.Nome);
+                        peopleWithFilters = peopleWithFilters.OrderBy(p => p.Nome);
                         break;
                     case "telefone":
-                        teste = teste.OrderBy(p => p.Telefone);
+                        peopleWithFilters = peopleWithFilters.OrderBy(p => p.Telefone);
                         break;
                     default:
-                        teste = teste.OrderBy(p => p.Id);
+                        peopleWithFilters = peopleWithFilters.OrderBy(p => p.Id);
                         break;
                 }
-
-            // return personWithFilters;
-            return teste.ToList();
+            return peopleWithFilters.ToList();
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Person value)
+        public IActionResult Post([FromBody] Person values)
         {
-            if(value == null)
+            if(values == null)
             {
                 return BadRequest();
             }
-            if(value.Email == null)
+            if(values.Email == null)
             {
                 return BadRequest();
             }
-            if(value.Senha == null)
+            if(values.Senha == null)
             {
                 return BadRequest();
             }
-            _context.People.Add(value);
+            _context.People.Add(values);
             _context.SaveChanges();
-            return StatusCode(201, value);
+            return StatusCode(201, values);
         }
 
         [HttpPut("{id}")]
