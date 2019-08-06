@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CodePeople.Model{  
     public class PersonContext : DbContext
     {
-        public DbSet<Person> Peoples { get; set; }
+        public DbSet<Person> People { get; set; }
 
         public PersonContext(DbContextOptions<PersonContext> options) : base(options)
         {

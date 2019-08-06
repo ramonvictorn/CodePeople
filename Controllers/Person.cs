@@ -23,27 +23,27 @@ namespace CodePeople.Model{
             )
         {   
 
-            int _filterCpf = filterCpf == null ? 0 : int.Parse(filterCpf);
-            int _filterTelefone = filterTelefone == null ? 0 : int.Parse(filterTelefone);
+            // int _filterCpf = filterCpf == null ? 0 : int.Parse(filterCpf);
+            // int _filterTelefone = filterTelefone == null ? 0 : int.Parse(filterTelefone);
             int _offset = offset == null ? 0 : int.Parse(offset);
             string _orderBy = orderBy == null ? "id" : orderBy;
             //List<Person> personWithOrder;
-            List<Person> personWithFilters = _context.Peoples
+            List<Person> personWithFilters = _context.People
                 .Where(p => 
                     (filterName  == null || p.Nome == filterName) &&
                     (filterEmail  == null || p.Email == filterEmail) &&
-                    (_filterCpf  == 0 || p.Cpf == _filterCpf) &&
-                    (_filterTelefone  == 0 || p.Telefone == _filterTelefone)
+                    (filterCpf  == null || p.Cpf == filterCpf) &&
+                    (filterTelefone  == null || p.Telefone == filterTelefone)
                     
                 ).Skip(_offset).ToList();
                 
-                var teste = from p in _context.Peoples select p;
+                var teste = from p in _context.People select p;
 
                 teste = teste.Where(p => 
                     (filterName  == null || p.Nome == filterName) &&
                     (filterEmail  == null || p.Email == filterEmail) &&
-                    (_filterCpf  == 0 || p.Cpf == _filterCpf) &&
-                    (_filterTelefone  == 0 || p.Telefone == _filterTelefone)
+                    (filterCpf  == null || p.Cpf == filterCpf) &&
+                    (filterTelefone  == null || p.Telefone == filterTelefone)
                     
                 ).Skip(_offset);
 
@@ -82,7 +82,7 @@ namespace CodePeople.Model{
             {
                 return BadRequest();
             }
-            _context.Peoples.Add(value);
+            _context.People.Add(value);
             _context.SaveChanges();
             return StatusCode(201, value);
         }
@@ -92,13 +92,13 @@ namespace CodePeople.Model{
         {
             int _id = int.Parse(id);
             person.Id = _id;
-            var existingPerson = _context.Peoples.Where(s => s.Id == person.Id).FirstOrDefault<Person>();
+            var existingPerson = _context.People.Where(s => s.Id == person.Id).FirstOrDefault<Person>();
 
             if (existingPerson != null)
             {
                 existingPerson.Nome = person.Nome != null ? person.Nome : existingPerson.Nome;
-                existingPerson.Cpf = person.Cpf != 0 ? person.Cpf : existingPerson.Cpf;
-                existingPerson.Telefone = person.Telefone != 0 ? person.Telefone : existingPerson.Telefone;
+                existingPerson.Cpf = person.Cpf != null ? person.Cpf : existingPerson.Cpf;
+                existingPerson.Telefone = person.Telefone != null ? person.Telefone : existingPerson.Telefone;
                 existingPerson.Email = person.Email != null ? person.Email : existingPerson.Email;
                 existingPerson.Senha = person.Senha != null ? person.Senha : existingPerson.Senha;
                 _context.SaveChanges();
