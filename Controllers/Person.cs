@@ -68,8 +68,12 @@ namespace CodePeople.Model{
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Person value)
+        public IActionResult Post([FromBody] Person value)
         {
+            if(value == null)
+            {
+                return BadRequest();
+            }
             if(value.Email == null)
             {
                 return BadRequest();
