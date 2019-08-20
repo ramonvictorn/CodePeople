@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using CodePeople.Model;
+using CodePeople.Repository;
 namespace CodePeople.Model{  
     [Route("api/people")]
     public class PersonController : Controller
@@ -29,7 +30,7 @@ namespace CodePeople.Model{
                     (personToSearch.Cpf  == null || p.Cpf == personToSearch.Cpf) &&
                     (personToSearch.Telefone  == null || p.Telefone == personToSearch.Telefone)
                     
-                ).Skip(_offset);
+                ).Skip(_offset).Take(10);
 
                 switch (_orderBy)
                 {
@@ -72,7 +73,7 @@ namespace CodePeople.Model{
         [HttpPut("{id}")]
         public IActionResult EditPerson(string id, [FromBody] Person person)
         {
-            int _id = int.Parse(id);
+            int _id = int.Parse(id); //failed to try?
             person.Id = _id;
             var existingPerson = _context.People.Where(s => s.Id == person.Id).FirstOrDefault<Person>();
 

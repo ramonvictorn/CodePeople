@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 namespace CodePeople.Model{  
     public class PersonContext : DbContext
     {
