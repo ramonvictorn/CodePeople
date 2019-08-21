@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using CodePeople.Model;
+using CodePeople.Repository;
 namespace CodePeople
 {
     public class Startup
@@ -24,6 +25,7 @@ namespace CodePeople
             services.AddEntityFrameworkNpgsql()
              .AddDbContext<PersonContext>(options => 
                 options.UseNpgsql(Configuration.GetConnectionString("DB")));
+            services.AddScoped<IPersonRepository, PersonRepository >();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,PersonContext PersonContext )
